@@ -46,6 +46,30 @@ for user in user_data:
     username_password[username] = password
         
 #===== Functions =====
+    
+    
+def login():
+#====Login Section====
+
+    logged_in = False
+    while not logged_in:
+        print("~~~~~~~~~~~~~~~~~~~~~~ Welcome to Task Manager! ~~~~~~~~~~~~~~~~~~~~~~")
+        print("\033[1m\033[4mLogin\033[0m")
+        curr_user = input("Username: ").strip()
+        curr_pass = input("Password: ").strip()
+        
+        if curr_user not in username_password.keys():
+            print("User does not exist")
+            continue
+        elif username_password[curr_user] != curr_pass:
+            print("Wrong password")
+            continue
+        else:
+            print("-"*70)
+            print(f"Hello {curr_user}, Welcome Back!")
+            logged_in = True
+
+    return curr_user
 
 
 def reg_user():
@@ -666,31 +690,13 @@ def main():
     different menus based on their role.
     """
     while True:
-        #====Login Section====
- 
-        logged_in = False
-        while not logged_in:
-            print("~~~~~~~~~~~~~~~~~~~~~~ Welcome to Task Manager! ~~~~~~~~~~~~~~~~~~~~~~")
-            print("\033[1m\033[4mLogin\033[0m")
-            curr_user = input("Username: ").strip()
-            curr_pass = input("Password: ").strip()
-            
-            if curr_user not in username_password.keys():
-                print("User does not exist")
-                continue
-            elif username_password[curr_user] != curr_pass:
-                print("Wrong password")
-                continue
-            else:
-                print("-"*70)
-                print(f"Hello {curr_user}, Welcome Back!")
-                logged_in = True
-
-        if curr_user == "admin":
-            admin_menu(curr_user, None)
+        user_role = login()
+        
+        # Login check and then display menu according to relevant user
+        if user_role == "admin":
+            admin_menu(user_role, None)
         else:
-            disp_menu(curr_user, None)
-
+            disp_menu(user_role, None)
 
 if __name__ == "__main__":
     main()
