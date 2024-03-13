@@ -207,95 +207,92 @@ def view_mine(curr_user, selected_task):
 
     if not task_dict:
         print("Task list empty! Try adding a task. Returning to main menu...")
-    else:
-        
-        for count, t in enumerate(task_list, start=1):
-            if t['username'] == curr_user:
-                task_dict[count] = t
+    
+    for count, t in enumerate(task_list, start=1):
+        if t['username'] == curr_user:
+            task_dict[count] = t
 
-                disp_str = ("-"*80)
-                disp_str += f"\nTask number {count}\n"
-                disp_str += ("="*80)
-                disp_str += f"\nTask: \t\t {t['title']}\n"
-                disp_str += f"Assigned to: \t {t['username']}\n"
-                disp_str += f"Date Assigned: \t {t['assigned_date'].strftime(DATETIME_STRING_FORMAT)}\n"
-                disp_str += f"Due Date: \t {t['due_date'].strftime(DATETIME_STRING_FORMAT)}\n"
-                disp_str += f"Task Description: \n {t['description']}\n"
-                disp_str += f"Task Completed?: \n {t['completed']}\n"
-                disp_str += ("-"*80)
-                print(disp_str)
+            disp_str = ("-"*80)
+            disp_str += f"\nTask number {count}\n"
+            disp_str += ("="*80)
+            disp_str += f"\nTask: \t\t {t['title']}\n"
+            disp_str += f"Assigned to: \t {t['username']}\n"
+            disp_str += f"Date Assigned: \t {t['assigned_date'].strftime(DATETIME_STRING_FORMAT)}\n"
+            disp_str += f"Due Date: \t {t['due_date'].strftime(DATETIME_STRING_FORMAT)}\n"
+            disp_str += f"Task Description: \n {t['description']}\n"
+            disp_str += f"Task Completed?: \n {t['completed']}\n"
+            disp_str += ("-"*80)
+            print(disp_str)
+            
+    while True:
+        task_select = input("""Please type the number of the task you want to select 
+or type \033[1m-1\033[0m to return to the main menu: """)
+        print("-"*80)
+        if task_select == "-1":
+            if curr_user == "admin":
+                admin_menu(curr_user, selected_task)
+            else:
+                disp_menu(curr_user, selected_task)
                 
-        while True:
-            task_select = input("""Please type the number of the task you want to select 
-    or type \033[1m-1\033[0m to return to the main menu: """)
-            print("-"*80)
-            if task_select == "-1":
+        # if task_select.isdigit():
+        task_number = int(task_select)
+        if task_number in task_dict:
+            selected_task = task_dict[task_number]
+            if selected_task['completed'] == "Yes":
+                print("Task complete. This task cannot be edited.\n")
                 if curr_user == "admin":
                     admin_menu(curr_user, selected_task)
                 else:
                     disp_menu(curr_user, selected_task)
-                    
-            if task_select.isdigit():
-                task_number = int(task_select)
-                if task_number in task_dict:
-                    selected_task = task_dict[task_number]
-                    if selected_task['completed'] == "Yes":
-                        print("Task complete. This task cannot be edited.\n")
-                        if curr_user == "admin":
-                            admin_menu(curr_user, selected_task)
-                        else:
-                            disp_menu(curr_user, selected_task)
-                    else:
-                        vm_menu = input("""Please choose from the following options:
-        1. Mark the task as complete
-        2. Edit the task
-        """)
-                    print("-"*80)
-                    if vm_menu == "1":
-                        # Checks if the task is already complete
+            else:
+                vm_menu = input("""Please choose from the following options:
+1. Mark the task as complete
+2. Edit the task
+""")
+            print("-"*80)
+            if vm_menu == "1":
+                # Checks if the task is already complete
+                if selected_task['completed'] == "Yes":
+                    print("This task has been completed.")
+                    break
+                else:
+                    # Marks the task as complete
+                    selected_task['completed'] = "Yes"
+                # Updates the completion status in the file
+                update_task(task_list)
+                print("Task successfully completed. Well Done! 👏")
+                print("-"*80)
+            elif vm_menu == "2":
+                while True:
+                    edit_menu = input("""What would you like to edit?: 
+1. Change task assignment username
+2. Change due date of task
+'\033[3m'Remember, a task can only be edited if it has not been completed'\033[0m'
+""")    
+                    if edit_menu == "1":
+                        # Checks to see if the task is already complete
                         if selected_task['completed'] == "Yes":
-                            print("This task has been completed.")
+                            print("This task has been completed and cannot be edited.")
+                            # Sends the user back to the main menu if it is
                             break
-                        else:
-                            # Marks the task as complete
-                            selected_task['completed'] = "Yes"
-                        # Updates the completion status in the file
-                        update_task(task_list)
-                        print("Task successfully completed. Well Done! 👏")
-                        print("-"*80)
-                    elif vm_menu == "2":
-                        while True:
-                            edit_menu = input("""What would you like to edit?: 
-        1. Change task assignment username
-        2. Change due date of task
-    '\033[3m'Remember, a task can only be edited if it has not been completed'\033[0m'
-        """)    
-                            if edit_menu == "1":
-                                # Checks to see if the task is already complete
-                                if selected_task['completed'] == "Yes":
-                                    print("This task has been completed and cannot be edited.")
-                                    # Sends the user back to the main menu if it is
-                                    break
-                                else: 
-                                    # Displays current task assignment username
-                                    print(f"The current username this task is assigned to is: {selected_task['username']}")
-                                    # Utilizes function to update the task's assigned username in the txt file
-                                    change_user(task_list, selected_task)
-                                    break
-                            elif edit_menu == "2":
-                                # Display current due date
-                                print(f"The current due date for this task is: {selected_task['due_date'].strftime(DATETIME_STRING_FORMAT)}")
-                                # Utilizes function to update the task's due date in the txt file
-                                change_duedate(task_list, selected_task)
-                                break
-                            else:
-                                print("Invalid option. Please try again.")
+                        else: 
+                            # Displays current task assignment username
+                            print(f"The current username this task is assigned to is: {selected_task['username']}")
+                            # Utilizes function to update the task's assigned username in the txt file
+                            change_user(task_list, selected_task)
+                            break
+                    elif edit_menu == "2":
+                        # Display current due date
+                        print(f"The current due date for this task is: {selected_task['due_date'].strftime(DATETIME_STRING_FORMAT)}")
+                        # Utilizes function to update the task's due date in the txt file
+                        change_duedate(task_list, selected_task)
+                        break
                     else:
                         print("Invalid option. Please try again.")
-                else:
-                    print("Invalid option. Please try again.")
             else:
                 print("Invalid option. Please try again.")
+        else:
+            print("Invalid option. Please try again.")
 
 
 def read_tasks():
