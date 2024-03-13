@@ -1,0 +1,53 @@
+User Overview:
+ - Total users registered: 7
+ - Total tasks generated: 8
+
+For the user admin:
+ - Total tasks assigned: 2
+ - Percentage of total tasks assigned: 25.0%
+ - Percentage of completed tasks: 50.0%
+ - Percentage of incomplete tasks: 50.0%
+ - Percentage of overdue tasks: 0.0%
+
+For the user ebobi:
+ - Total tasks assigned: 2
+ - Percentage of total tasks assigned: 25.0%
+ - Percentage of completed tasks: 100.0%
+ - Percentage of incomplete tasks: 0.0%
+ - Percentage of overdue tasks: 0.0%
+
+For the user jord:
+ - Total tasks assigned: 1
+ - Percentage of total tasks assigned: 12.5%
+ - Percentage of completed tasks: 0.0%
+ - Percentage of incomplete tasks: 100.0%
+ - Percentage of overdue tasks: 0.0%
+
+For the user bigcarlb:
+ - Total tasks assigned: 1
+ - Percentage of total tasks assigned: 12.5%
+ - Percentage of completed tasks: 0.0%
+ - Percentage of incomplete tasks: 100.0%
+ - Percentage of overdue tasks: 0.0%
+
+For the user trademekfc:
+ - Total tasks assigned: 2
+ - Percentage of total tasks assigned: 25.0%
+ - Percentage of completed tasks: 0.0%
+ - Percentage of incomplete tasks: 100.0%
+ - Percentage of overdue tasks: 0.0%
+
+For the user jamjam:
+ - Total tasks assigned: 0
+ - Percentage of total tasks assigned: 0.0%
+ - Percentage of completed tasks: 0%
+ - Percentage of incomplete tasks: 0%
+ - Percentage of overdue tasks: 0%
+
+For the user sirtom:
+ - Total tasks assigned: 0
+ - Percentage of total tasks assigned: 0.0%
+ - Percentage of completed tasks: 0%
+ - Percentage of incomplete tasks: 0%
+ - Percentage of overdue tasks: 0%
+

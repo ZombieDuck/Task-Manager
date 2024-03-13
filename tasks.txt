@@ -1,0 +1,8 @@
+ebobi;Bake Cakes;bake the marble cupcakes;2024-02-27;2024-02-27;Yes
+jord;Clean YOUR ROOM;put all your washing away!!!!!!! NOT ON THE CHAIR OR BED OR FLOOR!;2024-02-28;2024-02-27;No
+trademekfc;Go to bed on time!;you must sleep at normal people sleeping times;2024-02-28;2024-02-27;No
+admin;Finish this program;refactor the code and add extra required functionality;2024-03-04;2024-02-27;Yes
+bigcarlb;Put up bookshelf;buy and assemble new bookshelf;2024-05-01;2024-02-27;No
+ebobi;Tarot Reading;do tarot reading for today;2024-02-28;2024-02-28;Yes
+trademekfc;Send details for holiday;send over the details for location and accomodation for holiday;2024-02-29;2024-02-28;No
+admin;Update documentation;go through entire program and update comments and docstrings for each function;2024-03-01;2024-02-28;No
